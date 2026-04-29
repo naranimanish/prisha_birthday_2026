@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -255,130 +254,112 @@
       .hero-title .line1 { font-size: 1.22rem; }
     }
 
-    .welcome-effect {
+    .party-overlay {
       position: fixed;
       inset: 0;
       z-index: 9999;
+      pointer-events: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at top, rgba(255,47,209,0.96), rgba(122,92,255,0.94) 45%, rgba(18,0,31,0.98));
       overflow: hidden;
-      animation: welcomeFade 2.6s ease forwards;
-      pointer-events: none;
-    }
-
-    .welcome-card {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 28px 26px;
-      border-radius: 28px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.28);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.28);
-      backdrop-filter: blur(10px);
-      transform: scale(0.86);
-      animation: welcomePop 1.15s cubic-bezier(.2,1.25,.35,1) forwards;
+      background: radial-gradient(circle at center, rgba(255,47,209,0.22), rgba(18,0,31,0.08) 45%, transparent 72%);
+      animation: overlayFade 3.2s ease forwards;
     }
 
     .welcome-pop {
-      font-size: 3rem;
-      line-height: 1;
-      margin-bottom: 10px;
-      animation: popBounce 0.9s ease-in-out infinite alternate;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 18px 24px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      box-shadow: 0 14px 40px rgba(255,0,221,0.35);
+      backdrop-filter: blur(10px);
+      animation: popWelcome 2.6s ease forwards;
     }
 
-    .welcome-text {
-      font-size: 1.45rem;
+    .welcome-pop .pop-main {
+      font-size: 1.55rem;
       font-weight: 800;
-      color: white;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.32);
-      letter-spacing: 0.2px;
+      color: #ffffff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.38);
     }
 
-    .welcome-subtext {
+    .welcome-pop .pop-sub {
       margin-top: 6px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 600;
       color: #ffe6ff;
     }
 
-    .confetti {
+    .confetti-piece {
       position: absolute;
       top: -20px;
-      width: 10px;
-      height: 18px;
-      border-radius: 4px;
-      opacity: 0.95;
-      animation: confettiFall 2.4s linear forwards;
+      width: 9px;
+      height: 16px;
+      border-radius: 3px;
+      opacity: 0;
+      animation: confettiFall 2.8s ease-out forwards;
     }
 
-    .confetti:nth-child(1) { left: 8%; background:#fff176; animation-delay:0s; }
-    .confetti:nth-child(2) { left: 15%; background:#ff8eff; animation-delay:.12s; }
-    .confetti:nth-child(3) { left: 23%; background:#76f7ff; animation-delay:.04s; }
-    .confetti:nth-child(4) { left: 32%; background:#ffffff; animation-delay:.18s; }
-    .confetti:nth-child(5) { left: 41%; background:#ffb347; animation-delay:.08s; }
-    .confetti:nth-child(6) { left: 50%; background:#ff4fd8; animation-delay:.16s; }
-    .confetti:nth-child(7) { left: 59%; background:#9dff8a; animation-delay:.02s; }
-    .confetti:nth-child(8) { left: 68%; background:#ffffff; animation-delay:.2s; }
-    .confetti:nth-child(9) { left: 77%; background:#ffd6ff; animation-delay:.1s; }
-    .confetti:nth-child(10) { left: 86%; background:#7df9ff; animation-delay:.06s; }
-    .confetti:nth-child(11) { left: 93%; background:#fff176; animation-delay:.14s; }
-    .confetti:nth-child(12) { left: 5%; background:#ffb347; animation-delay:.22s; }
+    .party-burst {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      opacity: 0;
+      animation: burstPop 1.35s ease-out forwards;
+    }
 
-    @keyframes welcomeFade {
-      0% { opacity: 1; visibility: visible; }
-      78% { opacity: 1; visibility: visible; }
+    @keyframes overlayFade {
+      0% { opacity: 1; }
+      75% { opacity: 1; }
       100% { opacity: 0; visibility: hidden; }
     }
 
-    @keyframes welcomePop {
-      0% { transform: scale(0.72); opacity: 0; }
-      55% { transform: scale(1.06); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes popBounce {
-      from { transform: translateY(0) rotate(-5deg); }
-      to { transform: translateY(-8px) rotate(5deg); }
+    @keyframes popWelcome {
+      0% { transform: scale(0.5) translateY(18px); opacity: 0; }
+      18% { transform: scale(1.08) translateY(0); opacity: 1; }
+      32% { transform: scale(1); opacity: 1; }
+      78% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(0.96) translateY(-12px); opacity: 0; }
     }
 
     @keyframes confettiFall {
-      0% { transform: translateY(-40px) rotate(0deg); }
-      100% { transform: translateY(112vh) rotate(720deg); }
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(760deg); opacity: 0; }
+    }
+
+    @keyframes burstPop {
+      0% { transform: translate(0,0) scale(0.2); opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translate(var(--x), var(--y)) scale(1); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .party-overlay {
+        display: none;
+      }
     }
 
   </style>
 </head>
 <body>
-  <div class="welcome-effect" id="welcomeEffect" aria-hidden="true">
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
-    <span class="confetti"></span>
 
-    <div class="welcome-card">
-      <div class="welcome-pop">🎉</div>
-      <div class="welcome-text">Welcome to Prisha's Party</div>
-      <div class="welcome-subtext">Get ready for fun</div>
+  <div class="party-overlay" id="partyOverlay">
+    <div class="welcome-pop">
+      <div class="pop-main">Welcome to Prisha's Party</div>
+      <div class="pop-sub">Let the fun begin</div>
     </div>
   </div>
-
   <div class="wrapper">
     <div class="card">
       <div class="content">
 
         <div class="guest">
-          <h2 id="guestName">You Are Invited</h2>
+          <h2 id="guestName">✨💖 You Are Invited! ✨💖</h2>
           <p class="subtitle" id="guestSubtitle">Prisha's 6th Birthday • RUMI K-POP Party</p>
         </div>
 
@@ -440,24 +421,10 @@
     }
 
     const guest = params.get('guest');
-    const family = params.get('family');
-    const adults = params.get('adults');
-    const kids = params.get('kids');
 
     if (guest) {
       const guestText = decodeURIComponent(guest).replace(/\+/g, ' ');
-      document.getElementById('guestName').textContent = `Hey ${guestText}, You Are Invited!`;
-    }
-
-    if (family) {
-      const familyText = decodeURIComponent(family).replace(/\+/g, ' ');
-      document.getElementById('guestName').textContent = `${familyText}, You Are Invited!`;
-    }
-
-    if (adults || kids) {
-      const adultText = adults ? `${adults} adult${adults === '1' ? '' : 's'}` : '';
-      const kidText = kids ? `${kids} kid${kids === '1' ? '' : 's'}` : '';
-      document.getElementById('guestSubtitle').textContent = `Reserved for ${[adultText, kidText].filter(Boolean).join(' and ')} • Prisha's 6th Birthday`;
+      document.getElementById('guestName').textContent = `✨💖 Hey ${guestText}, You Are Invited! ✨💖`;
     }
 
     setText('eventDate', params.get('date'));
@@ -469,12 +436,41 @@
     const map = params.get('map');
     if (map) document.getElementById('mapLink').href = decodeURIComponent(map);
 
-    window.addEventListener('load', () => {
-      const welcome = document.getElementById('welcomeEffect');
-      if (welcome) {
-        setTimeout(() => welcome.remove(), 2800);
+    function launchPartyEffect() {
+      const overlay = document.getElementById('partyOverlay');
+      if (!overlay) return;
+
+      const colors = ['#ff2fd1', '#7a5cff', '#ffd166', '#ffffff', '#66f2ff', '#ff8eff'];
+
+      for (let i = 0; i < 78; i++) {
+        const piece = document.createElement('span');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = (Math.random() * 0.8) + 's';
+        piece.style.animationDuration = (2.1 + Math.random() * 1.2) + 's';
+        piece.style.transform = `rotate(${Math.random() * 180}deg)`;
+        overlay.appendChild(piece);
       }
-    });
+
+      for (let i = 0; i < 34; i++) {
+        const burst = document.createElement('span');
+        burst.className = 'party-burst';
+        burst.style.left = '50%';
+        burst.style.top = '50%';
+        burst.style.background = colors[Math.floor(Math.random() * colors.length)];
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 90 + Math.random() * 180;
+        burst.style.setProperty('--x', Math.cos(angle) * distance + 'px');
+        burst.style.setProperty('--y', Math.sin(angle) * distance + 'px');
+        burst.style.animationDelay = (Math.random() * 0.35) + 's';
+        overlay.appendChild(burst);
+      }
+
+      setTimeout(() => overlay.remove(), 3400);
+    }
+
+    window.addEventListener('load', launchPartyEffect);
 
   </script>
 </body>
